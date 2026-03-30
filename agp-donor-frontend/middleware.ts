@@ -15,14 +15,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value
-// console.log(!accessToken)
-  if (!accessToken) {
-    // console.log("middlware is responsible")
-    const authUrl = new URL('/auth', request.url)
-    authUrl.searchParams.set('redirect', pathname)
-    return NextResponse.redirect(authUrl)
-  }
+//   const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value
+// // console.log(!accessToken)
+//   if (!accessToken) {
+//     // console.log("middlware is responsible")
+//     const authUrl = new URL('/auth', request.url)
+//     authUrl.searchParams.set('redirect', pathname)
+//     return NextResponse.redirect(authUrl)
+//   }
 
   return NextResponse.next()
 }

@@ -114,7 +114,7 @@ async refreshToken(@Req() req: Request, @Res() res: Response) {
   const cookieOptions = {
     httpOnly: true,
     secure: true,
-    sameSite: 'lax' as const,   // ← was 'strict', lax allows cross-origin sends
+    sameSite: 'none' as const,   // ← was 'strict', lax allows cross-origin sends
     path: '/',
   }
     res.cookie('access_token', accessToken, {
