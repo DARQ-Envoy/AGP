@@ -82,3 +82,51 @@ Backend API (NestJS / Cloud Run)
 Supabase (DB + Auth)
         ↓
 LLM (Groq API)
+
+
+
+### Architecture Overview
+
+- **Frontend** handles UI and user interaction  
+- **Backend** processes data, enforces auth, and constructs AI prompts  
+- **Supabase** manages persistence and authentication  
+- **AI layer** operates on structured dataset context  
+
+---
+
+### ⚠️ Tradeoffs & Shortcuts
+
+Due to the one-day constraint, some pragmatic decisions were made:
+
+- **Middleware-based route protection was simplified**  
+  - Cross-domain cookie limitations (Vercel ↔ Cloud Run) prevented reliable auth checks in middleware  
+  - Auth validation is handled via backend instead  
+  - Middleware can be revisited with a unified domain setup  
+
+- **Limited caching strategy**  
+  - Auth endpoints explicitly disable caching to ensure correctness  
+
+- **Basic error handling in AI layer**  
+  - Focus was on correctness and structured prompting over edge-case handling  
+
+---
+
+### ✅ What is Production-Ready
+
+- Modular NestJS backend architecture  
+- Supabase integration for auth and persistence  
+- Structured AI prompting pipeline  
+- Clean, responsive frontend UI  
+- End-to-end data flow (upload → insights → AI queries)  
+
+---
+
+### 🚧 What Would Be Improved Next
+
+- Move to a shared domain for proper cookie-based middleware auth  
+- Add role-based access control (RBAC)  
+- Improve dataset scaling (pagination, aggregation layer)  
+- Add background processing for large uploads  
+- Enhance AI query reliability with schema validation  
+- Add automated tests (unit + integration)  
+
